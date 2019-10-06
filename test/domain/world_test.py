@@ -1,6 +1,7 @@
 import unittest
 from src.domain.World import World
 from src.domain.Territory import Territory
+from src.domain.Coordinate import Coord
 
 class WorldTest(unittest.TestCase):
 
@@ -23,6 +24,7 @@ class WorldTest(unittest.TestCase):
         world = World(10, 10, 0, fox_count, MockCoordGenerator())
         assert world.grid[0][0].fox_count() == 1
         assert world.grid[3][6].fox_count() == 0
+
 
 class MockCoordGenerator():
     def __init__(self):
