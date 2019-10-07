@@ -6,6 +6,7 @@ from src.game.FoxMovement import FoxMovement
 
 class World:
     def __init__(self, line, column, rabbits, foxes, coord_generator):
+        self.round_count = 0
         self.line = line
         self.column = column
         self.territories = []
@@ -31,20 +32,21 @@ class World:
         occupied_territories = self.find_occupied()
         fox_territories = self.find_foxes(occupied_territories)
 
-        print(str(len(fox_territories)))
-
         for territory in fox_territories:
-            print(str(territory.fox_count()))
             self.move_foxes(territory)
+
+        self.round_count += 1
 
     def move_foxes(self, territory):
         adj = territory.coord.adjacent(self.line, self.column)
 
         while territory.fox_count() != 0:
             fox = territory.remove_one_fox()
-            move = FoxMovement()
-            coord = move.next_coord(adj)
-            self.add_fox_to(coord, fox)
+
+            if fox.is_not_dead_from_hunger():
+                move = FoxMovement()
+                coord = move.next_coord(adj)
+                self.add_fox_to(coord, fox)
 
     def find_occupied(self):
         return list(filter(lambda t: t.is_occupied(), self.territories))

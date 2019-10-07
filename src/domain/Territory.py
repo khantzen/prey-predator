@@ -20,6 +20,7 @@ class Territory:
     def remove_one_fox(self):
         fox = self.foxes[0]
         self.foxes = self.foxes[1::]
+        fox.increment_age()
         return fox
 
     def fox_count(self):
@@ -34,11 +35,11 @@ class Territory:
     def life_happen(self):
         if len(self.rabbits) == 0:
             self.proceed_foxes()
-            pass
+            return
 
         if len(self.foxes) == 0:
             self.proceed_rabbits()
-            pass
+            return
 
         self.start_hunt()
 

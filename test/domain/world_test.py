@@ -23,19 +23,51 @@ class WorldTest(unittest.TestCase):
         assert self.fox_count_for(world, Coord(0, 0)) == 1
         assert self.fox_count_for(world, Coord(3, 6)) == 0
 
-    def test_fox_move(self):
+    def test_fox_should_move_from_one_territory_to_another(self):
         fox_count = 1
         world = World(1, 2, 0, fox_count, MockCoordGenerator())
         world.launch_round()
         assert self.fox_count_for(world, Coord(0, 0)) == 0
         assert self.fox_count_for(world, Coord(0, 1)) == 1
 
-    def test_multiple_fox_move(self):
+    def test_multiple_fox_should_move_from_one_territory_to_another(self):
         fox_count = 3
         world = World(3, 3, 0, fox_count, MockCoordGenerator())
         world.launch_round()
         assert self.fox_count_for(world, Coord(0, 0)) == 0
         assert self.fox_count_for(world, Coord(2, 2)) == 0
+
+        assert self.fox_count_for(world, Coord(0, 1)) >= 1 \
+               or self.fox_count_for(world, Coord(1, 0)) >= 1
+
+        assert self.fox_count_for(world, Coord(1, 2)) == 1 \
+               or self.fox_count_for(world, Coord(2, 1)) == 1
+
+    def test_fox_should_die_from_hunger_after_5_rounds_without_being_fed(self):
+        fox_count = 1
+        world = World(1, 2, 0, fox_count, MockCoordGenerator())
+
+        for x in range(6):
+            world.launch_round()
+
+        assert world.territories[0].fox_count() == 0
+
+    def test_fox_should_stay_alive_if_feed_during_the_last_five_turn(self):
+        fox_count = 1
+        world = World(1, 2, 0, fox_count, MockCoordGenerator())
+
+        for x in range(4):
+            world.launch_round()
+
+        world.territories[0].foxes[0].feed()
+
+        for x in range(2):
+            world.launch_round()
+
+        assert world.territories[0].fox_count() == 1
+
+    def test_fox_should_be_hungry_if_not_feed_during_last_three_turn(self):
+        pass
 
     @staticmethod
     def rabbit_count_for(world, coord):
@@ -45,15 +77,14 @@ class WorldTest(unittest.TestCase):
 
     @staticmethod
     def fox_count_for(world, coord):
-        print(world.territories)
         territories = list(filter(lambda t: t.coord == coord, world.territories))
         assert len(territories) == 1
         return territories[0].fox_count()
 
 
-class MockCoordGenerator():
-    def __init__(self):
-        self.coord = [Coord(0, 0), Coord(0, 0), Coord(2, 2)]
+class MockCoordGenerator:
+    def __init__(self, coord=[Coord(0, 0), Coord(0, 0), Coord(2, 2)]):
+        self.coord = coord
         self.index = 0
 
     def next_coord(self):
