@@ -6,5 +6,5 @@ class RabbitMovementTest(unittest.TestCase):
     def test_rabbit_move_to_random_case(self):
         movement = RabbitMovement()
         inputCoord = [Coord(0,0), Coord(1,1), Coord(7,23)]
-        nextCase = movement.next(inputCoord)
+        nextCase = movement.next_coord(inputCoord)
         assert nextCase in inputCoord

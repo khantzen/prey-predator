@@ -1,19 +1,25 @@
 from src.domain.Breed import Breed
 from src.domain.Hunt import Hunt
+from src.domain.Coordinate import Coord
 
 class Territory():
-
-    def __init__(self):
+    def __init__(self, line=0, column=0):
         self.rabbits = []
         self.foxes   = []
         self.breeded_foxes = 0
         self.breeded_rabbits = 0
+        self.coord = Coord(line, column)
 
     def add_rabbit(self, rabbit):
         self.rabbits += [rabbit]
 
     def add_fox(self, fox):
         self.foxes += [fox]
+
+    def remove_one_fox(self):
+        fox = self.foxes[0]
+        self.foxes = self.foxes[1::]
+        return fox
 
     def fox_count(self):
         return len(self.foxes)

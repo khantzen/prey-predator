@@ -1,8 +1,10 @@
 import random
 
-class FoxMovement():
+
+class FoxMovement:
     def __init__(self):
         pass
 
-    def next(self, coords):
+    @staticmethod
+    def next_coord(coords):
         return random.choice(coords)

@@ -1,4 +1,4 @@
-class Hunt():
+class Hunt:
     def __init__(self, foxes, rabbits):
         self.foxes = foxes
         self.rabbits = rabbits

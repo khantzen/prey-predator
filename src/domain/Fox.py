@@ -1,4 +1,4 @@
-class Fox():
+class Fox:
     def __init__(self):
         self.is_hungry = True
 
