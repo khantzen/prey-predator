@@ -2,10 +2,11 @@ from src.domain.Breed import Breed
 from src.domain.Hunt import Hunt
 from src.domain.Coordinate import Coord
 
-class Territory():
+
+class Territory:
     def __init__(self, line=0, column=0):
         self.rabbits = []
-        self.foxes   = []
+        self.foxes = []
         self.breeded_foxes = 0
         self.breeded_rabbits = 0
         self.coord = Coord(line, column)
