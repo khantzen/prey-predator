@@ -13,6 +13,8 @@ class Fox:
 
     def increment_age(self):
         self.age += 1
+        self.is_hungry = self.age - self.last_meal > 3
+
 
     def is_not_dead_from_hunger(self):
         return self.age - self.last_meal < 5

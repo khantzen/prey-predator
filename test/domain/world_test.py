@@ -67,7 +67,18 @@ class WorldTest(unittest.TestCase):
         assert world.territories[0].fox_count() == 1
 
     def test_fox_should_be_hungry_if_not_feed_during_last_three_turn(self):
-        pass
+        fox_count = 1
+        world = World(1, 2, 0, fox_count, MockCoordGenerator())
+
+        for x in range(4):
+            world.launch_round()
+
+        world.territories[0].foxes[0].feed()
+
+        for x in range(4):
+            world.launch_round()
+
+        assert not world.territories[0].foxes[0].is_fed()
 
     @staticmethod
     def rabbit_count_for(world, coord):
