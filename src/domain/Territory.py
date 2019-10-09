@@ -7,8 +7,8 @@ class Territory:
     def __init__(self, line=0, column=0):
         self.rabbits = []
         self.foxes = []
-        self.breeded_foxes = 0
-        self.breeded_rabbits = 0
+        self.born_foxes = 0
+        self.born_rabbits = 0
         self.coord = Coord(line, column)
 
     def add_rabbit(self, rabbit):
@@ -46,8 +46,8 @@ class Territory:
     def proceed_foxes(self):
         fed_foxes = self.get_fed_foxes()
         breed = Breed(len(fed_foxes))
-        self.breeded_foxes = breed.new_children()
-        for x in range(self.breeded_foxes * 2):
+        self.born_foxes = breed.new_children()
+        for x in range(self.born_foxes * 2):
             fed_foxes[x].had_breed()
 
     def get_fed_foxes(self):
@@ -55,7 +55,7 @@ class Territory:
 
     def proceed_rabbits(self):
         breed = Breed(len(self.rabbits))
-        self.breeded_rabbits = breed.new_children()
+        self.born_rabbits = breed.new_children()
 
     def start_hunt(self):
         hungry_foxes = self.get_hungry_foxes()
@@ -70,7 +70,7 @@ class Territory:
         return list(filter(lambda rabbit: not rabbit.is_dead(), self.rabbits))
 
     def new_child_fox(self):
-        return self.breeded_foxes
+        return self.born_foxes
 
     def new_child_rabbit(self):
-        return self.breeded_rabbits
+        return self.born_rabbits
