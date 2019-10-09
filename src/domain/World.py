@@ -35,6 +35,11 @@ class World:
         for territory in fox_territories:
             self.move_foxes(territory)
 
+        occupied_territories = self.find_occupied()
+
+        for territory in occupied_territories:
+            territory.life_happen()
+
         self.round_count += 1
 
     def move_foxes(self, territory):
