@@ -18,9 +18,7 @@ class WorldTest(unittest.TestCase):
         world.launch_round()
         assert self.fox_count_for(world, Coord(0, 0)) == 0
         assert self.fox_count_for(world, Coord(2, 2)) == 0
-
         assert self.fox_count_for(world, Coord(0, 1)) >= 1 or self.fox_count_for(world, Coord(1, 0)) >= 1
-
         assert self.fox_count_for(world, Coord(1, 2)) == 1 or self.fox_count_for(world, Coord(2, 1)) == 1
 
     @staticmethod
@@ -37,7 +35,9 @@ class WorldTest(unittest.TestCase):
 
 
 class MockCoordGenerator:
-    def __init__(self, coord=[Coord(0, 0), Coord(0, 0), Coord(2, 2)]):
+    def __init__(self, coord=None):
+        if coord is None:
+            coord = [Coord(0, 0), Coord(0, 0), Coord(2, 2)]
         self.coord = coord
         self.index = 0
 

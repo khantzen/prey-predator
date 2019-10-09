@@ -41,7 +41,9 @@ class WorldTest(unittest.TestCase):
         assert not world.territories[1].foxes[1].is_fed()
 
 class MockCoordGenerator:
-    def __init__(self, coord=[Coord(0, 0), Coord(0, 0), Coord(2, 2)]):
+    def __init__(self, coord=None):
+        if coord is None:
+            coord = [Coord(0, 0), Coord(0, 0), Coord(2, 2)]
         self.coord = coord
         self.index = 0
 
