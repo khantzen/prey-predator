@@ -47,6 +47,8 @@ class Territory:
         fed_foxes = self.get_fed_foxes()
         breed = Breed(len(fed_foxes))
         self.breeded_foxes = breed.new_children()
+        for x in range(self.breeded_foxes * 2):
+            fed_foxes[x].had_breed()
 
     def get_fed_foxes(self):
         return list(filter(lambda fox: fox.is_fed(), self.foxes))
