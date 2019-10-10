@@ -68,11 +68,6 @@ class World:
     def find_occupied(self):
         return list(filter(lambda t: t.is_occupied(), self.territories))
 
-    @staticmethod
-    def next_coord(adj, move):
-        coord = move.next_coord(adj)
-        return coord
-
     def add_fox_to(self, coord, fox):
         list(filter(lambda territory: territory.coord == coord,
                     self.territories))[0].add_fox(fox)
@@ -80,6 +75,11 @@ class World:
     def add_rabbit_to(self, coord, rabbit):
         list(filter(lambda territory: territory.coord == coord,
                     self.territories))[0].add_rabbit(rabbit)
+
+    @staticmethod
+    def next_coord(adj, move):
+        coord = move.next_coord(adj)
+        return coord
 
     @staticmethod
     def find_foxes(territories):
