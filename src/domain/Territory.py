@@ -23,6 +23,11 @@ class Territory:
         fox.increment_age()
         return fox
 
+    def remove_one_rabbit(self):
+        rabbit = self.rabbits[0]
+        self.rabbits = self.rabbits[1::]
+        return rabbit
+
     def fox_count(self):
         return len(self.foxes)
 

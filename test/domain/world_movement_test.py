@@ -21,6 +21,22 @@ class WorldTest(unittest.TestCase):
         assert self.fox_count_for(world, Coord(0, 1)) >= 1 or self.fox_count_for(world, Coord(1, 0)) >= 1
         assert self.fox_count_for(world, Coord(1, 2)) == 1 or self.fox_count_for(world, Coord(2, 1)) == 1
 
+    def test_one_rabbit_should_move_from_one_territory_to_another(self):
+        rabbit_count = 1
+        world = World(1, 2, rabbit_count, 0, MockCoordGenerator())
+        world.launch_round()
+        assert self.rabbit_count_for(world, Coord(0, 0)) == 0
+        assert self.rabbit_count_for(world, Coord(0, 1)) == 1
+
+    def test_multiple_rabbit_should_move_from_one_territory_to_anthoer(self):
+        rabbit_count = 3
+        world = World(3, 3, rabbit_count, 0, MockCoordGenerator())
+        world.launch_round()
+        assert self.rabbit_count_for(world, Coord(0, 0)) == 0
+        assert self.rabbit_count_for(world, Coord(2, 2)) == 0
+        assert self.rabbit_count_for(world, Coord(0, 1)) >= 1 or self.rabbit_count_for(world, Coord(1, 0)) >= 1
+        assert self.rabbit_count_for(world, Coord(1, 2)) == 1 or self.rabbit_count_for(world, Coord(2, 1)) == 1
+
     @staticmethod
     def rabbit_count_for(world, coord):
         territories = list(filter(lambda t: t.coord == coord, world.territories))
