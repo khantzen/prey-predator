@@ -35,10 +35,10 @@ class World:
         rabbit_territories = self.find_rabbits(occupied_territories)
 
         for territory in fox_territories:
-            self.move_foxes(territory)
+            self.foxes_migrate_from(territory)
 
         for territory in rabbit_territories:
-            self.move_rabbit(territory)
+            self.rabbits_migrate_from(territory)
 
         occupied_territories = self.find_occupied()
 
@@ -47,7 +47,7 @@ class World:
 
         self.round_count += 1
 
-    def move_foxes(self, territory):
+    def foxes_migrate_from(self, territory):
         adj = territory.coord.adjacent(self.line, self.column)
 
         while territory.fox_count() != 0:
@@ -57,7 +57,7 @@ class World:
                 coord = self.next_coord(adj, FoxMovement())
                 self.add_fox_to(coord, fox)
 
-    def move_rabbit(self, territory):
+    def rabbits_migrate_from(self, territory):
         adj = territory.coord.adjacent(self.line, self.column)
 
         while territory.rabbit_count() != 0:
