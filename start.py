@@ -30,7 +30,7 @@ while True:
     print("foxes : " + str(world.total_fox()))
     print("rabbit : " + str(world.total_rabbits()))
 
-    print("do you want to edit eco system ? (y/[n])")
+    print("Do you want to edit eco system ? (y/[n])")
     response = input()
 
     if response == "y":
