@@ -6,7 +6,9 @@ from src.domain.Coordinate import Coord
 class Territory:
     def __init__(self, line=0, column=0):
         self.rabbits = []
+        self.temp_rabbit = []
         self.foxes = []
+        self.temp_fox = []
         self.born_foxes = 0
         self.born_rabbits = 0
         self.coord = Coord(line, column)
@@ -14,8 +16,20 @@ class Territory:
     def add_rabbit(self, rabbit):
         self.rabbits += [rabbit]
 
+    def add_new_rabbit(self, rabbit):
+        self.temp_rabbit += [rabbit]
+
     def add_fox(self, fox):
         self.foxes += [fox]
+
+    def add_new_fox(self, fox):
+        self.temp_fox += [fox]
+
+    def end_migration(self):
+        self.rabbits = self.temp_rabbit
+        self.foxes = self.temp_fox
+        self.temp_rabbit = []
+        self.temp_fox = []
 
     def remove_one_fox(self):
         fox = self.foxes[0]
@@ -38,15 +52,9 @@ class Territory:
         return len(self.rabbits) != 0 or len(self.foxes) != 0
 
     def life_happen(self):
-        if len(self.rabbits) == 0:
-            self.proceed_foxes()
-            return
-
-        if len(self.foxes) == 0:
-            self.proceed_rabbits()
-            return
-
         self.start_hunt()
+        self.proceed_foxes()
+        self.proceed_rabbits()
 
     def proceed_foxes(self):
         self.born_foxes = 0
@@ -57,7 +65,7 @@ class Territory:
             fed_foxes[x].had_breed()
 
     def get_fed_foxes(self):
-        return list(filter(lambda fox: fox.is_fed(), self.foxes))
+        return list(filter(lambda fox: fox.can_breed(), self.foxes))
 
     def proceed_rabbits(self):
         self.born_rabbits = 0

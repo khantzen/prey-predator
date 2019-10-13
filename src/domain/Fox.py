@@ -11,6 +11,9 @@ class Fox:
     def is_fed(self):
         return not self.is_hungry
 
+    def can_breed(self):
+        return not self.is_hungry
+
     def increment_age(self):
         self.age += 1
         self.is_hungry = self.is_hungry or self.age - self.last_meal > 3
@@ -19,4 +22,4 @@ class Fox:
         self.is_hungry = True
 
     def is_not_dead_from_hunger(self):
-        return self.age - self.last_meal < 5
+        return self.age < 5 or self.age - self.last_meal < 5

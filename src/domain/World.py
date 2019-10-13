@@ -88,3 +88,19 @@ class World:
         rabbits_nests = new_child_rabbit_territories(self.territories)
         for territory in rabbits_nests:
             add_new_rabbits_to(territory)
+
+    def total_fox(self):
+        foxes_territories = find_foxes(self.territories)
+        total = 0
+        for territory in foxes_territories:
+            total += territory.fox_count()
+
+        return total
+
+    def total_rabbits(self):
+        foxes_territories = find_rabbits(self.territories)
+        total = 0
+        for territory in foxes_territories:
+            total += territory.rabbit_count()
+
+        return total

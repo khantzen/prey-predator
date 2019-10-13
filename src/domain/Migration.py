@@ -21,12 +21,12 @@ def next_coord(adj, move):
 
 def add_rabbit_to(coord, territories, rabbit):
     list(filter(lambda territory: territory.coord == coord,
-                territories))[0].add_rabbit(rabbit)
+                territories))[0].add_new_rabbit(rabbit)
 
 
 def add_fox_to(coord, territories, fox):
     list(filter(lambda territory: territory.coord == coord,
-                territories))[0].add_fox(fox)
+                territories))[0].add_new_fox(fox)
 
 
 class Migration:
@@ -43,6 +43,8 @@ class Migration:
 
         rabbit_territories = find_rabbits(occupied_territories)
         self.migrate_rabbits(rabbit_territories)
+
+        [territory.end_migration() for territory in self.territories]
 
     def migrate_foxes(self, fox_territories):
         [self.migrate(territory, self.move_fox) for territory in fox_territories]
