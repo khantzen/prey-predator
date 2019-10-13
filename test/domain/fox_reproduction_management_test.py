@@ -5,7 +5,7 @@ from src.game.CoordGenerator import CoordGenerator
 
 def test_two_fed_fox_met_territory_should_breed_one_fox():
     world = two_fox_simulation()
-    assert world.territories[1].new_child_fox() == 1
+    assert world.territories[1].fox_count() == 3
 
 
 def test_one_fed_and_one_hungry_fox_should_breed_no_child():
@@ -17,7 +17,7 @@ def test_one_fed_and_one_hungry_fox_should_breed_no_child():
 
     world.launch_round()
 
-    assert world.territories[1].new_child_fox() == 0
+    assert world.territories[1].fox_count() == 2
 
 
 def test_fox_should_be_hungry_after_breeding():
@@ -34,5 +34,3 @@ def two_fox_simulation():
     world.territories[2].foxes[0].feed()
     world.launch_round()
     return world
-
-

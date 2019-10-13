@@ -23,6 +23,28 @@ def find_rabbits(territories):
     return list(filter(lambda t: t.rabbit_count() != 0, territories))
 
 
+def new_child_rabbit_territories(territories):
+    return list(filter(lambda t: t.new_child_rabbit() != 0, territories))
+
+
+def new_child_fox_territories(territories):
+    return list(filter(lambda t: t.new_child_fox() != 0, territories))
+
+
+def add_new_rabbits_to(territory):
+    for _ in range(territory.new_child_rabbit()):
+        territory.add_rabbit(Rabbit())
+
+    territory.born_rabbits = 0
+
+
+def add_new_foxes_to(territory):
+    for _ in range(territory.new_child_fox()):
+        territory.add_fox(Fox())
+
+    territory.born_foxes = 0
+
+
 class World:
     def __init__(self, line, column, rabbits, foxes, coord_generator):
         self.round_count = 0
@@ -52,5 +74,17 @@ class World:
 
         [territory.life_happen() for territory in occupied_territories]
 
+        self.rabbit_birth()
+        self.fox_birth()
+
         self.round_count += 1
 
+    def fox_birth(self):
+        fox_nests = new_child_fox_territories(self.territories)
+        for territory in fox_nests:
+            add_new_foxes_to(territory)
+
+    def rabbit_birth(self):
+        rabbits_nests = new_child_rabbit_territories(self.territories)
+        for territory in rabbits_nests:
+            add_new_rabbits_to(territory)

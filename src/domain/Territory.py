@@ -49,6 +49,7 @@ class Territory:
         self.start_hunt()
 
     def proceed_foxes(self):
+        self.born_foxes = 0
         fed_foxes = self.get_fed_foxes()
         breed = Breed(len(fed_foxes))
         self.born_foxes = breed.new_children()
@@ -59,9 +60,11 @@ class Territory:
         return list(filter(lambda fox: fox.is_fed(), self.foxes))
 
     def proceed_rabbits(self):
+        self.born_rabbits = 0
         mature_rabbits = self.get_mature_rabbits()
         breed = Breed(len(mature_rabbits))
         self.born_rabbits = breed.new_children()
+        [rabbit.did_procreate() for rabbit in mature_rabbits]
 
     def start_hunt(self):
         hungry_foxes = self.get_hungry_foxes()
