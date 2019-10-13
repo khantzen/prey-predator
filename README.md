@@ -15,3 +15,9 @@ pip3 install pytest
 ```shell
 python3 -m pytest -v
 ```
+
+## Run the app
+
+```shell
+python3 start.py
+```
