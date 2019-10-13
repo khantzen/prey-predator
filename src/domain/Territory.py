@@ -79,3 +79,6 @@ class Territory:
 
     def new_child_rabbit(self):
         return self.born_rabbits
+
+    def adjacent(self, max_line, max_column):
+        return self.coord.adjacent(max_line, max_column)
