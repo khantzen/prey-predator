@@ -59,7 +59,8 @@ class Territory:
         return list(filter(lambda fox: fox.is_fed(), self.foxes))
 
     def proceed_rabbits(self):
-        breed = Breed(len(self.rabbits))
+        mature_rabbits = self.get_mature_rabbits()
+        breed = Breed(len(mature_rabbits))
         self.born_rabbits = breed.new_children()
 
     def start_hunt(self):
@@ -70,6 +71,9 @@ class Territory:
 
     def get_hungry_foxes(self):
         return list(filter(lambda fox: not fox.is_fed(), self.foxes))
+
+    def get_mature_rabbits(self):
+        return list(filter(lambda rabbit: rabbit.can_breed(), self.rabbits))
 
     def get_living_rabbits(self):
         return list(filter(lambda rabbit: not rabbit.is_dead(), self.rabbits))

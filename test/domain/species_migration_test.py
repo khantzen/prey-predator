@@ -1,10 +1,11 @@
 from src.domain.Coordinate import Coord
 from src.domain.World import World
+from src.game.CoordGenerator import CoordGenerator
 
 
-def test_multiple_rabbit_should_move_from_one_territory_to_anthoer():
+def test_multiple_rabbit_should_move_from_one_territory_to_another():
     rabbit_count = 3
-    world = World(3, 3, rabbit_count, 0, MockCoordGenerator())
+    world = World(3, 3, rabbit_count, 0, CoordGenerator())
     world.launch_round()
     assert rabbit_count_for(world, Coord(0, 0)) == 0
     assert rabbit_count_for(world, Coord(2, 2)) == 0
@@ -14,7 +15,7 @@ def test_multiple_rabbit_should_move_from_one_territory_to_anthoer():
 
 def test_one_rabbit_should_move_from_one_territory_to_another():
     rabbit_count = 1
-    world = World(1, 2, rabbit_count, 0, MockCoordGenerator())
+    world = World(1, 2, rabbit_count, 0, CoordGenerator())
     world.launch_round()
     assert rabbit_count_for(world, Coord(0, 0)) == 0
     assert rabbit_count_for(world, Coord(0, 1)) == 1
@@ -22,7 +23,7 @@ def test_one_rabbit_should_move_from_one_territory_to_another():
 
 def test_multiple_fox_should_move_from_one_territory_to_another():
     fox_count = 3
-    world = World(3, 3, 0, fox_count, MockCoordGenerator())
+    world = World(3, 3, 0, fox_count, CoordGenerator())
     world.launch_round()
     assert fox_count_for(world, Coord(0, 0)) == 0
     assert fox_count_for(world, Coord(2, 2)) == 0
@@ -32,7 +33,7 @@ def test_multiple_fox_should_move_from_one_territory_to_another():
 
 def test_fox_should_move_from_one_territory_to_another():
     fox_count = 1
-    world = World(1, 2, 0, fox_count, MockCoordGenerator())
+    world = World(1, 2, 0, fox_count, CoordGenerator())
     world.launch_round()
     assert fox_count_for(world, Coord(0, 0)) == 0
     assert fox_count_for(world, Coord(0, 1)) == 1
@@ -48,16 +49,3 @@ def fox_count_for(world, coord):
     territories = list(filter(lambda t: t.coord == coord, world.territories))
     assert len(territories) == 1
     return territories[0].fox_count()
-
-
-class MockCoordGenerator:
-    def __init__(self, coord=None):
-        if coord is None:
-            coord = [Coord(0, 0), Coord(0, 0), Coord(2, 2)]
-        self.coord = coord
-        self.index = 0
-
-    def next_coord(self):
-        coord = self.coord[self.index]
-        self.index += 1
-        return coord

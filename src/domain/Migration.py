@@ -65,5 +65,6 @@ class Migration:
     def move_rabbit(self, adj, territory):
         while territory.rabbit_count() != 0:
             rabbit = territory.remove_one_rabbit()
+            rabbit.increment_age()
             coord = next_coord(adj, RabbitMovement())
             add_rabbit_to(coord, self.territories, rabbit)

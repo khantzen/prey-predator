@@ -1,6 +1,5 @@
-import unittest
-from src.game.FoxMovement import FoxMovement
 from src.domain.Coordinate import Coord
+from src.game.FoxMovement import FoxMovement
 
 
 def test_fox_move_to_random_case():

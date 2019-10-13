@@ -51,7 +51,9 @@ def test_5_rabbits_and_5_hungry_fox_should_left_no_rabbit_alive():
 def test_5_rabbits_and_no_fox_should_breed_no_rabbit_when_life_happen():
     territory = Territory()
     for i in range(5):
-        territory.add_rabbit(Rabbit())
+        rabbit = Rabbit()
+        rabbit.age = 5
+        territory.add_rabbit(rabbit)
 
     territory.life_happen()
     assert territory.new_child_rabbit() == 2

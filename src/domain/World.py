@@ -53,3 +53,4 @@ class World:
         [territory.life_happen() for territory in occupied_territories]
 
         self.round_count += 1
+
