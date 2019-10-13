@@ -1,6 +1,6 @@
-from src.domain.Fox import Fox
-from src.domain.Rabbit import Rabbit
-from src.domain.Territory import Territory
+from simulation.domain.Fox import Fox
+from simulation.domain.Rabbit import Rabbit
+from simulation.domain.Territory import Territory
 
 
 def test_add_one_rabbit_to_territory():

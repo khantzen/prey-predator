@@ -1,6 +1,6 @@
-from src.domain.Coordinate import Coord
-from src.domain.World import World
-from src.game.CoordGenerator import CoordGenerator
+from simulation.domain.Coordinate import Coord
+from simulation.domain.World import World
+from simulation.game.CoordGenerator import CoordGenerator
 
 
 def test_multiple_rabbit_should_move_from_one_territory_to_another():

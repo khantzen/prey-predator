@@ -1,5 +1,5 @@
-from src.domain.World import World
-from src.game.CoordGenerator import CoordGenerator
+from simulation.domain.World import World
+from simulation.game.CoordGenerator import CoordGenerator
 
 
 def test_fox_should_die_from_hunger_after_5_rounds_without_being_fed():

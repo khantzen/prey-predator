@@ -1,4 +1,4 @@
-from src.domain.Coordinate import Coord
+from simulation.domain.Coordinate import Coord
 import random
 
 

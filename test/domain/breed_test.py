@@ -1,4 +1,4 @@
-from src.domain.Breed import Breed
+from simulation.domain.Breed import Breed
 
 
 def test_one_couple_should_breed_1_child():

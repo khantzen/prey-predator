@@ -1,6 +1,6 @@
-from src.domain.Fox import Fox
-from src.domain.Hunt import Hunt
-from src.domain.Rabbit import Rabbit
+from simulation.domain.Fox import Fox
+from simulation.domain.Hunt import Hunt
+from simulation.domain.Rabbit import Rabbit
 
 
 def test_rabbit_should_be_eaten_when_met_one_fox():

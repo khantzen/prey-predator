@@ -1,5 +1,5 @@
-from src.game.FoxMovement import FoxMovement
-from src.game.RabbitMovement import RabbitMovement
+from simulation.game.FoxMovement import FoxMovement
+from simulation.game.RabbitMovement import RabbitMovement
 
 
 def find_occupied_from(territories):

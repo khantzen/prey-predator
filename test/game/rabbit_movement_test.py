@@ -1,6 +1,6 @@
 import unittest
-from src.game.RabbitMovement import RabbitMovement
-from src.domain.Coordinate import Coord
+from simulation.game.RabbitMovement import RabbitMovement
+from simulation.domain.Coordinate import Coord
 
 
 def test_rabbit_move_to_random_case():

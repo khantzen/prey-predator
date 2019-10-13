@@ -1,6 +1,6 @@
-from src.domain.Breed import Breed
-from src.domain.Hunt import Hunt
-from src.domain.Coordinate import Coord
+from simulation.domain.Breed import Breed
+from simulation.domain.Hunt import Hunt
+from simulation.domain.Coordinate import Coord
 
 
 class Territory:

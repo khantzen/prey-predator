@@ -1,9 +1,9 @@
 import random
 
-from src.domain.Fox import Fox
-from src.domain.Rabbit import Rabbit
-from src.domain.World import World
-from src.game.CoordGenerator import CoordGenerator
+from simulation.domain.Fox import Fox
+from simulation.domain.Rabbit import Rabbit
+from simulation.domain.World import World
+from simulation.game.CoordGenerator import CoordGenerator
 
 max_line = 5
 max_column = 5

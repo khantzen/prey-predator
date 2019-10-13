@@ -1,4 +1,4 @@
-from src.domain.Coordinate import Coord
+from simulation.domain.Coordinate import Coord
 
 
 def test_get_available_case_at_center():

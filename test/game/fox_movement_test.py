@@ -1,5 +1,5 @@
-from src.domain.Coordinate import Coord
-from src.game.FoxMovement import FoxMovement
+from simulation.domain.Coordinate import Coord
+from simulation.game.FoxMovement import FoxMovement
 
 
 def test_fox_move_to_random_case():
